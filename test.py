@@ -18,7 +18,7 @@ pll.SetOutputDivider(0, 4)
 pll.SetOutputEnable(0, True)
 xem.SetPLL22393Configuration(pll)
 
-output = xem.ConfigureFPGA('./OKPythonSample.bit')
+output = xem.ConfigureFPGA('./FPGA/OKPythonSample.bit')
 print output
 
 output = xem.SetWireInValue(0x00,0x01)
