@@ -1,4 +1,6 @@
 # Ignore gui project files
 
-./res/GUI/**/*
-!./res/GUI/BioEECoins/bioeecoinsmain.ui
+res/GUI/*
+!res/GUI/BioEECoins
+res/GUI/BioEECoins/*
+!res/GUI/BioEECoins/bioeecoinsmain.ui
