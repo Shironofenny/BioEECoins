@@ -8,11 +8,11 @@ xem = ok.okCFrontPanel()
 pll = ok.PLL22393()
 
 if (xem.NoError != xem.OpenBySerial("")):
-    print "Error in opening FPGA"
+    print("Error in opening FPGA")
     sys.exit()
 
 xem.GetPLL22393Configuration(pll)
-print pll.GetPLLFrequency(0)
+print(pll.GetPLLFrequency(0))
 pll.SetReference(48.0)
 pll.SetPLLParameters(0, 400, 48, True)
 pll.SetOutputSource(0, ok.PLL22393.ClkSrc_PLL0_0)
@@ -21,17 +21,17 @@ pll.SetOutputEnable(0, True)
 xem.SetPLL22393Configuration(pll)
 
 output = xem.ConfigureFPGA('../FPGA/OKPythonSample.bit')
-print output
+print(output)
 
 output = xem.SetWireInValue(0x00,0x01)
 output = xem.SetWireInValue(0x01,0x55)
-print output
+print(output)
 
 output = xem.UpdateWireIns()
-print output
+print(output)
 
 output = xem.ActivateTriggerIn(0x40,0x00)
-print output
+print(output)
 
 output = xem.SetWireInValue(0x00,0x02)
 output = xem.SetWireInValue(0x01,0x00)
@@ -55,4 +55,4 @@ xem.UpdateWireIns()
 
 xem.ActivateTriggerIn(0x40,0x00)
 
-print 'Hello World'
+print('Hello World')

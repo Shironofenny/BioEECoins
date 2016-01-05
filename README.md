@@ -11,3 +11,5 @@ Go to the official website of QT and have QT5 downloaded (under LGPL licence)
 
 * PyQt installation
 After installing Qt, you will need SIP and PyQt.
+	* PyQt can be installed by using apt-get install python[3]-pyqt5
+	* The ploting functionality is implemented using pyqtgraph integration, this can be installed by using apt-get install python[3]-pyqtgraph
