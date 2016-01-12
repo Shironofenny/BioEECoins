@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pudb ../res/coins/CoinsLauncher.py

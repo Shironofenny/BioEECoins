@@ -23,6 +23,15 @@ OK_ADDR_TRIGGER=0x40
 # Correspond to OK_ADDR_TRIGGER
 OK_DATA_TRIGGER=0x00
 
+# -------------------------------------------------------------------
+# Below are constant configurations for genenral software requirement
+# -------------------------------------------------------------------
+
+LOG_FILE_NAME = 'coins_runtime.log'
+
+# Load from xml to get software configurations
+# PFN
+
 # ----------------------------------------------------
 # Below are constant configurations for Bioee_fpga.bit
 # ----------------------------------------------------
@@ -47,23 +56,29 @@ OK_DATA_WIN_CTRL0_RESET = 0x8000
 OK_DATA_WIN_CTRL0_DACENABLE = 0x0080
 OK_DATA_WIN_CTRL0_NULL = 0x0000
 
+# Data for pipein, ADC
+OK_DATA_PIN_ADC_DIN = 0x0001
+OK_DATA_PIN_ADC_NCS = 0x0002
+OK_DATA_PIN_ADC_BEGIN = 0x0004
+
 # Basic bit configuration
-BIT_0	 = 0x0001
-BIT_1	 = 0x0002
-BIT_2	 = 0x0004
-BIT_3	 = 0x0008
-BIT_4	 = 0x0010
-BIT_5	 = 0x0020
-BIT_6	 = 0x0040
-BIT_7	 = 0x0080
-BIT_8	 = 0x0100
-BIT_9	 = 0x0200
-BIT_10 = 0x0400
-BIT_11 = 0x0800
-BIT_12 = 0x1000
-BIT_13 = 0x2000
-BIT_14 = 0x4000
-BIT_15 = 0x8000
+BIT = bytearray(16)
+BIT[0] = 0x0001
+BIT[1] = 0x0002
+BIT[2] = 0x0004
+BIT[3] = 0x0008
+BIT[4] = 0x0010
+BIT[5] = 0x0020
+BIT[6] = 0x0040
+BIT[7] = 0x0080
+BIT[8] = 0x0100
+BIT[9] = 0x0200
+BIT[10]= 0x0400
+BIT[11]= 0x0800
+BIT[12]= 0x1000
+BIT[13]= 0x2000
+BIT[14]= 0x4000
+BIT[15]= 0x8000
 
 # This part is related to constants defining the position of all control bits:
 
@@ -103,15 +118,15 @@ CA_REINT				= 0
 # PFN
 
 # Assemble the control bits into a vector
-OK_CTRLVEC1 = CA_COMP_CAP 		* BIT_0  + CA_COMP_10K 		* BIT_1  	+ CA_COMP_1K 		* BIT_2  	+ CA_COMP_100 	 	* BIT_3  + \
-							CA_RESBYP 			*	BIT_4  + CA_CESETEXT 		* BIT_5  	+ CA_CEINT 	 		* BIT_6  	+ CA_CEEXT 				* BIT_7  + \
-							CA_UNITY 				* BIT_8  + CA_REEXT		 		* BIT_9  	+ CA_REINT 			* BIT_10 	+ TIA_WE 					* BIT_11 + \
-							TIA_CELLTEST		* BIT_12 + TIA_OTATEST 		* BIT_13 	+ TIA_VCM 			* BIT_14 	+ TIA_FB_10K   		* BIT_15
+OK_CTRLVEC1 = CA_COMP_CAP 		* BIT[0]  + CA_COMP_10K 		* BIT[1]  	+ CA_COMP_1K 		* BIT[2]  	+ CA_COMP_100 	 	* BIT[3]  + \
+							CA_RESBYP 			*	BIT[4]  + CA_CESETEXT 		* BIT[5]  	+ CA_CEINT 	 		* BIT[6]  	+ CA_CEEXT 				* BIT[7]  + \
+							CA_UNITY 				* BIT[8]  + CA_REEXT		 		* BIT[9]  	+ CA_REINT 			* BIT[10] 	+ TIA_WE 					* BIT[11] + \
+							TIA_CELLTEST		* BIT[12] + TIA_OTATEST 		* BIT[13] 	+ TIA_VCM 			* BIT[14] 	+ TIA_FB_10K   		* BIT[15]
 
-OK_CTRLVEC2 = TIA_COMP_100K 	* BIT_0	 + TIA_COMP_CAP1 	* BIT_1 	+ TIA_COMP_CAP2 * BIT_2 	+ TIA_COMP_RESBYP * BIT_3 + \
-							TIA_COMP_CAPBYP * BIT_4	 + TIA_FB_10K 		* BIT_5 	+ TIA_FB_100K 	* BIT_6 	+ TIA_FB_1M 			* BIT_7 + \
-							TIA_FB_10M 			* BIT_8	 + TIA_FB_250F 		* BIT_9 	+ TIA_FB_500F 	* BIT_10 	+ TIA_FB_1P 			* BIT_11 + \
-							TIA_FB_5P 			* BIT_12 + TIA_FB_UNITY 	* BIT_13
+OK_CTRLVEC2 = TIA_COMP_100K 	* BIT[0]	 + TIA_COMP_CAP1 	* BIT[1] 	+ TIA_COMP_CAP2 * BIT[2] 	+ TIA_COMP_RESBYP * BIT[3] + \
+							TIA_COMP_CAPBYP * BIT[4]	 + TIA_FB_10K 		* BIT[5] 	+ TIA_FB_100K 	* BIT[6] 	+ TIA_FB_1M 			* BIT[7] + \
+							TIA_FB_10M 			* BIT[8]	 + TIA_FB_250F 		* BIT[9] 	+ TIA_FB_500F 	* BIT[10] + TIA_FB_1P 			* BIT[11] + \
+							TIA_FB_5P 			* BIT[12]  + TIA_FB_UNITY 	* BIT[13]
 
 OK_CHANNELMAP = [[1, 4], [1, 3], [1, 2], [1, 6], [1, 5], [1, 7],
 								 [0, 3], [0, 4], [0, 0], [0, 5], [0, 2], [0, 6], [0, 1], [0, 7],
@@ -122,5 +137,25 @@ OK_CHANNELMAP = [[1, 4], [1, 3], [1, 2], [1, 6], [1, 5], [1, 7],
 								 [2, 1], [2, 6], [2, 4],
 								 [5, 0], [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6], [5, 7],
 								 [1, 0], [1, 1]]
+
+OK_ADC_VEC = bytearray(104)
+
+ADC_WRITE 		= 1
+ADC_REPEAT 		= 1
+ADC_AIN0 			= 1
+ADC_AIN1 			= 1
+ADC_AIN2 			= 1
+ADC_AIN3 			= 1
+ADC_AIN4 			= 1
+ADC_AIN5 			= 1
+ADC_AIN6 			= 1
+ADC_AIN7 			= 1
+ADC_TSENSE 		= 1
+ADC_DONTCARE1 = 0
+ADC_DONTCARE2 = 0
+ADC_EXTREF 		= 1
+ADC_TMPAVG 		= 0
+ADC_STANDBY 	= 0
+ADC_AIN1 			= 1
 
 
