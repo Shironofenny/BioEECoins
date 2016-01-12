@@ -28,7 +28,7 @@ After installing Qt, you will need SIP and PyQt.
 				```
 				python configure.py -qmake=ABSOLUTE_PATH_TO_THE_BINARY ;
 				make ;
-				make install ;
+				make install
 				```
 				And this should fix the thing.
 
