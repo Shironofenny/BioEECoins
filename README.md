@@ -12,12 +12,12 @@ Go to the official website of QT and have QT5 downloaded (under LGPL licence)
 * PyQt installation
 After installing Qt, you will need SIP and PyQt.
 	* The version of SIP provided by the Ubuntu community official repository is a little bit out dated. So you will probably need to download it and compile from source. The source code can be found at: [SIP 4.17] (http://www.riverbankcomputing.com/software/sip/download). Download the code, then run:
-...```bash
-python configure.py
-make
-make install
-```
-...That should provide a successful installation of SIP
+				```bash
+				python configure.py
+				make
+				make install
+				```
+				That should provide a successful installation of SIP
 
 	* If you are running python3, then it is probably good to just get PyQt5 from the official repository. This can be done by running `sudo apt-get install python3-pyqt5`
 However, I never get python3 running with Opal Kelly's official library.
