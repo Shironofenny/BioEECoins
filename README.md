@@ -34,4 +34,4 @@ After installing Qt, you will need SIP and PyQt.
 
 	* The ploting functionality is implemented using pyqtgraph integration, this can be installed by using: `sudo apt-get install python[3]-pyqtgraph`
 
-		However the above 
+	However the above 
