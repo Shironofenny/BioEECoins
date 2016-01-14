@@ -5,6 +5,8 @@
 
 # This part is for constants related to Opal Kelly
 
+from OKByte import OKByte32
+
 OK_ADDR_COMMAND=0x00
 OK_ADDR_DATA=0x01
 
@@ -62,7 +64,7 @@ OK_DATA_PIN_ADC_NCS = 0x0002
 OK_DATA_PIN_ADC_BEGIN = 0x0004
 
 # Basic bit configuration
-BIT = bytearray(16)
+BIT = OKByte32(16)
 BIT[0] = 0x0001
 BIT[1] = 0x0002
 BIT[2] = 0x0004
